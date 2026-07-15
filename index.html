@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Website Redesign Discovery — Magic Shine</title>
+<style>
+  :root {
+    --bg: #0b1220; --panel: #1c1f26; --panel-2: #24272f; --border: #343945;
+    --text: #eef1f6; --muted: #98a0b0; --accent: #ffc72c; --accent-ink: #1a1500;
+    --accent-soft: rgba(255, 199, 44, 0.14); --radius: 12px; --maxw: 760px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 48px 20px 120px; }
+  header.hero { margin-bottom: 40px; }
+  .kicker { color: var(--accent); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 12px; }
+  h1 { font-size: 34px; line-height: 1.15; margin: 0 0 14px; letter-spacing: -0.02em; }
+  .intro { color: var(--muted); font-size: 15px; max-width: 640px; }
+  .intro strong { color: var(--text); }
+  .progress-bar { position: sticky; top: 0; z-index: 20; height: 4px; background: var(--border); margin: 0 -20px 32px; }
+  .progress-fill { height: 100%; width: 0; background: var(--accent); transition: width .2s ease; }
+  section.block { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-bottom: 22px; }
+  .block-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .block-num { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: .1em; }
+  .block-title { font-size: 18px; font-weight: 600; margin: 0; }
+  .block-sub { color: var(--muted); font-size: 13px; margin: 0 0 4px; }
+  .q { margin-top: 22px; }
+  .q > label.qlabel { display: block; font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .qnum { color: var(--muted); font-weight: 700; margin-right: 6px; }
+  .hint { color: var(--muted); font-size: 13px; margin: 2px 0 10px; }
+  input[type="text"], textarea { width: 100%; background: var(--panel-2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 11px 13px; font: inherit; font-size: 14px; resize: vertical; }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  textarea { min-height: 80px; }
+  .options { display: grid; gap: 8px; margin-top: 6px; }
+  .options.cols { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .opt { display: flex; align-items: center; gap: 10px; background: var(--panel-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; cursor: pointer; font-size: 14px; transition: border-color .15s, background .15s; }
+  .opt:hover { border-color: #3a3a44; }
+  .opt input { accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+  .opt.checked { border-color: var(--accent); background: var(--accent-soft); }
+  .inline-other { margin-top: 8px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  button { font: inherit; font-weight: 600; font-size: 14px; border-radius: 8px; padding: 13px 22px; cursor: pointer; border: 1px solid var(--border); background: var(--panel-2); color: var(--text); transition: transform .05s, background .15s, border-color .15s; }
+  button:hover { border-color: #3a3a44; }
+  button:active { transform: translateY(1px); }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  button.primary:hover { background: #ffd452; border-color: #ffd452; }
+  .saved-note { color: var(--muted); font-size: 12px; margin-top: 14px; }
+  @media (max-width: 560px) { h1 { font-size: 27px; } section.block { padding: 20px; } .wrap { padding: 32px 16px 100px; } }
+</style>
+</head>
+<body>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="wrap">
+  <header class="hero">
+    <div class="kicker">Website Redesign · Discovery</div>
+    <h1>Website Redesign Discovery Questionnaire</h1>
+    <p class="intro">Before we redesign <strong>magicshine.com</strong>, we want to understand the business behind the website — your <strong>goals, customers, performance, and how your team works</strong>. This is a strategic questionnaire, not a visual one; the more context you give, the better the redesign will perform. There are no right or wrong answers, and your progress saves automatically in this browser.</p>
+  </header>
+
+  <form id="qform" autocomplete="off">
+
+    <!-- 01 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">01</span><h2 class="block-title">Business &amp; Growth</h2></div>
+      <p class="block-sub">Where the business is today and where you'd like it to be.</p>
+      <div class="q"><label class="qlabel" for="q1"><span class="qnum">1.</span>What are your primary business goals over the next 12–24 months?</label><textarea id="q1" name="q1"></textarea></div>
+      <div class="q"><label class="qlabel" for="q2"><span class="qnum">2.</span>What would success look like after this project?</label><textarea id="q2" name="q2"></textarea></div>
+      <div class="q"><label class="qlabel" for="q3"><span class="qnum">3.</span>Which products or categories are most important for your growth?</label><textarea id="q3" name="q3"></textarea></div>
+      <div class="q"><label class="qlabel" for="q4"><span class="qnum">4.</span>Are there any new markets, customer segments or channels you're planning to enter?</label><textarea id="q4" name="q4"></textarea></div>
+      <div class="q"><label class="qlabel" for="q5"><span class="qnum">5.</span>What are the biggest obstacles preventing faster growth today?</label><textarea id="q5" name="q5"></textarea></div>
+    </section>
+
+    <!-- 02 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">02</span><h2 class="block-title">Customers &amp; Acquisition</h2></div>
+      <p class="block-sub">How people discover Magic Shine and what happens before they reach your website.</p>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">6.</span>Where does most of your website traffic currently come from?</label>
+        <div class="hint">Select all that apply.</div>
+        <div class="options cols">
+          <label class="opt"><input type="checkbox" name="q6" value="Organic search"><span>Organic search</span></label>
+          <label class="opt"><input type="checkbox" name="q6" value="Paid advertising"><span>Paid advertising</span></label>
+          <label class="opt"><input type="checkbox" name="q6" value="Dealers"><span>Dealers</span></label>
+          <label class="opt"><input type="checkbox" name="q6" value="Amazon"><span>Amazon</span></label>
+          <label class="opt"><input type="checkbox" name="q6" value="Social media"><span>Social media</span></label>
+          <label class="opt"><input type="checkbox" name="q6" value="Email"><span>Email</span></label>
+        </div>
+        <input type="text" class="inline-other" name="q6_other" placeholder="Other…" />
+      </div>
+      <div class="q"><label class="qlabel" for="q7"><span class="qnum">7.</span>Which acquisition channels perform best today?</label><textarea id="q7" name="q7"></textarea></div>
+      <div class="q"><label class="qlabel" for="q8"><span class="qnum">8.</span>Who is your primary customer?</label><textarea id="q8" name="q8"></textarea></div>
+      <div class="q"><label class="qlabel" for="q9"><span class="qnum">9.</span>Are there different customer groups that require different messaging?</label><textarea id="q9" name="q9"></textarea></div>
+      <div class="q"><label class="qlabel" for="q10"><span class="qnum">10.</span>What questions do customers ask before purchasing?</label><textarea id="q10" name="q10"></textarea></div>
+      <div class="q"><label class="qlabel" for="q11"><span class="qnum">11.</span>What information helps them make a buying decision?</label><textarea id="q11" name="q11"></textarea></div>
+    </section>
+
+    <!-- 03 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">03</span><h2 class="block-title">Website Performance</h2></div>
+      <p class="block-sub">How the website performs as a business tool — not how it looks.</p>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">12.</span>What are the primary actions you want visitors to take?</label>
+        <div class="hint">Select all that apply.</div>
+        <div class="options cols">
+          <label class="opt"><input type="checkbox" name="q12" value="Purchase a product"><span>Purchase a product</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Add to cart / start checkout"><span>Add to cart / checkout</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Find a local dealer"><span>Find a local dealer</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Create an account"><span>Create an account</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Register a product"><span>Register a product</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Contact support"><span>Contact support</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Subscribe to newsletter"><span>Subscribe to newsletter</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Download manuals / resources"><span>Download manuals / resources</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="Compare products / read reviews"><span>Compare / read reviews</span></label>
+        </div>
+        <input type="text" class="inline-other" name="q12_other" placeholder="Other…" />
+      </div>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">13.</span>Do you currently measure website conversions?</label>
+        <div class="options cols">
+          <label class="opt"><input type="radio" name="q13" value="Yes"><span>Yes</span></label>
+          <label class="opt"><input type="radio" name="q13" value="No"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q13" value="Partially"><span>Partially</span></label>
+        </div>
+        <input type="text" class="inline-other" name="q13_tools" placeholder="If yes, which tools? (e.g. GA4, Shopify Analytics, Klaviyo)…" />
+      </div>
+      <div class="q"><label class="qlabel" for="q14"><span class="qnum">14.</span>Where do visitors typically leave the purchasing journey?</label><textarea id="q14" name="q14"></textarea></div>
+      <div class="q"><label class="qlabel" for="q15"><span class="qnum">15.</span>Are there particular pages that perform well or poorly?</label><textarea id="q15" name="q15"></textarea></div>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">16.</span>What metrics do you track today?</label>
+        <div class="options cols">
+          <label class="opt"><input type="checkbox" name="q16" value="Traffic / sessions"><span>Traffic / sessions</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Conversion rate"><span>Conversion rate</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Average order value (AOV)"><span>Average order value</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Total revenue"><span>Total revenue</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Bounce rate"><span>Bounce rate</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Cart abandonment rate"><span>Cart abandonment</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Return on ad spend (ROAS)"><span>ROAS</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Email signups"><span>Email signups</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Dealer / wholesale inquiries"><span>Dealer / wholesale inquiries</span></label>
+          <label class="opt"><input type="checkbox" name="q16" value="Customer lifetime value"><span>Customer lifetime value</span></label>
+        </div>
+        <input type="text" class="inline-other" name="q16_other" placeholder="Other…" />
+      </div>
+      <div class="q"><label class="qlabel" for="q17"><span class="qnum">17.</span>Is there any existing analytics or research we can review?</label><textarea id="q17" name="q17" placeholder="e.g. Google Analytics access, heatmaps, past surveys, sales reports…"></textarea></div>
+    </section>
+
+    <!-- 04 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">04</span><h2 class="block-title">Brand &amp; Content Operations</h2></div>
+      <p class="block-sub">How your brand is managed internally.</p>
+      <div class="q"><label class="qlabel" for="q18"><span class="qnum">18.</span>Who is responsible for creating marketing and brand materials?</label><input type="text" id="q18" name="q18" /></div>
+      <div class="q"><label class="qlabel" for="q19"><span class="qnum">19.</span>Which teams are involved in producing content?</label><textarea id="q19" name="q19"></textarea></div>
+      <div class="q"><label class="qlabel" for="q20"><span class="qnum">20.</span>Which external agencies or freelancers do you work with?</label><textarea id="q20" name="q20"></textarea></div>
+      <div class="q"><label class="qlabel" for="q21"><span class="qnum">21.</span>How are brand decisions currently made?</label><textarea id="q21" name="q21"></textarea></div>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">22.</span>Do you have existing brand guidelines?</label>
+        <div class="options cols">
+          <label class="opt"><input type="radio" name="q22" value="Yes"><span>Yes</span></label>
+          <label class="opt"><input type="radio" name="q22" value="No"><span>No</span></label>
+          <label class="opt"><input type="radio" name="q22" value="In progress"><span>In progress</span></label>
+        </div>
+      </div>
+      <div class="q"><label class="qlabel" for="q23"><span class="qnum">23.</span>How do you ensure consistency across your website, product launches, advertising and social media?</label><textarea id="q23" name="q23"></textarea></div>
+      <div class="q"><label class="qlabel" for="q24"><span class="qnum">24.</span>Where do you feel consistency breaks down today?</label><textarea id="q24" name="q24"></textarea></div>
+    </section>
+
+    <!-- 05 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">05</span><h2 class="block-title">Internal Workflow &amp; Constraints</h2></div>
+      <p class="block-sub">A great solution needs to fit the way your organisation works.</p>
+      <div class="q"><label class="qlabel" for="q25"><span class="qnum">25.</span>Who will be involved throughout this project?</label><textarea id="q25" name="q25"></textarea></div>
+      <div class="q"><label class="qlabel" for="q26"><span class="qnum">26.</span>How are design and marketing decisions approved?</label><textarea id="q26" name="q26"></textarea></div>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">27.</span>What platform is your website currently built on?</label>
+        <div class="options cols">
+          <label class="opt"><input type="radio" name="q27plat" value="Shopify"><span>Shopify</span></label>
+          <label class="opt"><input type="radio" name="q27plat" value="WooCommerce / WordPress"><span>WooCommerce / WordPress</span></label>
+          <label class="opt"><input type="radio" name="q27plat" value="Magento / Adobe Commerce"><span>Magento / Adobe Commerce</span></label>
+          <label class="opt"><input type="radio" name="q27plat" value="BigCommerce"><span>BigCommerce</span></label>
+          <label class="opt"><input type="radio" name="q27plat" value="Custom build"><span>Custom build</span></label>
+          <label class="opt"><input type="radio" name="q27plat" value="Not sure"><span>Not sure</span></label>
+        </div>
+        <input type="text" class="inline-other" name="q27plat_other" placeholder="Other…" />
+      </div>
+      <div class="q"><label class="qlabel" for="q27"><span class="qnum">28.</span>Are there technical constraints we should be aware of?</label><textarea id="q27" name="q27" placeholder="e.g. ERP / inventory integrations, existing checkout, hosting, dev resources…"></textarea></div>
+      <div class="q"><label class="qlabel" for="q28"><span class="qnum">29.</span>Are there organisational or operational challenges that slow projects down?</label><textarea id="q28" name="q28"></textarea></div>
+      <div class="q"><label class="qlabel" for="q29"><span class="qnum">30.</span>Are there upcoming launches or deadlines we should consider?</label><textarea id="q29" name="q29"></textarea></div>
+      <div class="q"><label class="qlabel" for="q30"><span class="qnum">31.</span>What would make this project easy for your team to maintain after launch?</label><textarea id="q30" name="q30"></textarea></div>
+    </section>
+
+    <!-- 06 -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">06</span><h2 class="block-title">Project Logistics</h2></div>
+      <p class="block-sub">Helps us scope timeline and effort.</p>
+      <div class="q"><label class="qlabel" for="q_launch"><span class="qnum">32.</span>Do you have a target launch date or timeframe?</label><input type="text" id="q_launch" name="q_launch" placeholder="e.g. Q1 2027, before a trade show, no fixed date…" /></div>
+      <div class="q">
+        <label class="qlabel"><span class="qnum">33.</span>Is there an allocated budget range for the project?</label>
+        <div class="options cols">
+          <label class="opt"><input type="radio" name="q_budget" value="Under $25k"><span>Under $25k</span></label>
+          <label class="opt"><input type="radio" name="q_budget" value="$25k–50k"><span>$25k–50k</span></label>
+          <label class="opt"><input type="radio" name="q_budget" value="$50k–100k"><span>$50k–100k</span></label>
+          <label class="opt"><input type="radio" name="q_budget" value="$100k+"><span>$100k+</span></label>
+          <label class="opt"><input type="radio" name="q_budget" value="Prefer not to say"><span>Prefer not to say</span></label>
+        </div>
+      </div>
+      <div class="q"><label class="qlabel" for="q_final"><span class="qnum">34.</span>Is there anything else we should know before starting?</label><textarea id="q_final" name="q_final"></textarea></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="block">
+      <div class="block-head"><span class="block-num">✱</span><h2 class="block-title">Contact</h2></div>
+      <div class="q"><label class="qlabel" for="c_name">Name</label><input type="text" id="c_name" name="c_name" /></div>
+      <div class="q"><label class="qlabel" for="c_position">Position</label><input type="text" id="c_position" name="c_position" /></div>
+      <div class="q"><label class="qlabel" for="c_company">Company</label><input type="text" id="c_company" name="c_company" /></div>
+      <div class="q"><label class="qlabel" for="c_email">Email</label><input type="text" id="c_email" name="c_email" /></div>
+      <div class="q"><label class="qlabel" for="c_phone">Phone</label><input type="text" id="c_phone" name="c_phone" /></div>
+    </section>
+
+    <div class="actions">
+      <button type="button" class="primary" id="submitBtn">Submit</button>
+      <button type="button" id="clearBtn">Clear form</button>
+    </div>
+    <p class="saved-note" id="sendStatus" style="min-height:16px;"></p>
+    <p class="saved-note" id="savedNote">Answers autosave in this browser.</p>
+  </form>
+</div>
+
+<script>
+  // Paste your Google Apps Script /exec URL for THIS project's Sheet here.
+  const SHEET_WEBHOOK_URL = "";
+  const STORAGE_KEY = "magicshine_redesign_v1";
+  const form = document.getElementById("qform");
+
+  // Visual state + autosave for options
+  document.querySelectorAll(".opt input").forEach((inp) => {
+    inp.addEventListener("change", () => {
+      inp.closest(".opt").classList.toggle("checked", inp.checked);
+      if (inp.type === "radio") document.querySelectorAll(`input[name="${inp.name}"]`).forEach(r => r.closest(".opt")?.classList.toggle("checked", r.checked));
+      save(); updateProgress();
+    });
+  });
+
+  function v(name) { const el = form.elements[name]; return el ? (el.value || "").trim() : ""; }
+  function multi(name, otherName) {
+    const arr = [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(e => e.value);
+    if (otherName) { const o = (form.elements[otherName]?.value || "").trim(); if (o) arr.push(o); }
+    return arr.join(", ");
+  }
+
+  function buildColumns(submittedAt) {
+    return [
+      ["Submitted", submittedAt],
+      ["Name", v("c_name")], ["Position", v("c_position")], ["Company", v("c_company")],
+      ["Email", v("c_email")], ["Phone", v("c_phone")],
+      ["1. Business goals (12–24m)", v("q1")],
+      ["2. Success looks like", v("q2")],
+      ["3. Key products/categories", v("q3")],
+      ["4. New markets/segments/channels", v("q4")],
+      ["5. Obstacles to growth", v("q5")],
+      ["6. Traffic sources", multi("q6", "q6_other")],
+      ["7. Best channels today", v("q7")],
+      ["8. Primary customer", v("q8")],
+      ["9. Customer groups / messaging", v("q9")],
+      ["10. Pre-purchase questions", v("q10")],
+      ["11. Info that drives buying", v("q11")],
+      ["12. Primary desired actions", multi("q12", "q12_other")],
+      ["13. Measures conversions?", v("q13")],
+      ["13. Analytics tools", v("q13_tools")],
+      ["14. Where journey drops off", v("q14")],
+      ["15. Pages that over/underperform", v("q15")],
+      ["16. Metrics tracked", multi("q16", "q16_other")],
+      ["17. Existing analytics/research", v("q17")],
+      ["18. Owns brand/marketing materials", v("q18")],
+      ["19. Teams producing content", v("q19")],
+      ["20. Agencies / freelancers", v("q20")],
+      ["21. How brand decisions are made", v("q21")],
+      ["22. Has brand guidelines?", v("q22")],
+      ["23. How consistency is ensured", v("q23")],
+      ["24. Where consistency breaks", v("q24")],
+      ["25. Who's involved in project", v("q25")],
+      ["26. How decisions are approved", v("q26")],
+      ["27. Current platform", multi("q27plat", "q27plat_other")],
+      ["28. Technical constraints", v("q27")],
+      ["29. Organisational challenges", v("q28")],
+      ["30. Upcoming launches/deadlines", v("q29")],
+      ["31. Easy to maintain after launch", v("q30")],
+      ["32. Target launch date", v("q_launch")],
+      ["33. Budget range", v("q_budget")],
+      ["34. Anything else", v("q_final")]
+    ].map(([h, val]) => ({ h, v: val }));
+  }
+
+  // Persistence
+  function snapshot() {
+    const fd = new FormData(form); const data = {};
+    for (const [k, val] of fd.entries()) { if (data[k]) { if (!Array.isArray(data[k])) data[k] = [data[k]]; data[k].push(val); } else data[k] = val; }
+    return data;
+  }
+  let savedTimer;
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot()));
+    const note = document.getElementById("savedNote");
+    note.textContent = "Saved ✓"; clearTimeout(savedTimer);
+    savedTimer = setTimeout(() => note.textContent = "Answers autosave in this browser.", 1200);
+  }
+  function load() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) { updateProgress(); return; }
+    let data; try { data = JSON.parse(raw); } catch { return; }
+    Object.entries(data).forEach(([k, val]) => {
+      const els = form.elements[k]; if (!els) return;
+      if (els.length && (els[0]?.type === "checkbox" || els[0]?.type === "radio")) {
+        const vals = Array.isArray(val) ? val : [val];
+        [...els].forEach(el => { el.checked = vals.includes(el.value); el.closest(".opt")?.classList.toggle("checked", el.checked); });
+      } else if (els.type === "checkbox" || els.type === "radio") {
+        els.checked = (els.value === val); els.closest(".opt")?.classList.toggle("checked", els.checked);
+      } else { els.value = val; }
+    });
+    updateProgress();
+  }
+  form.addEventListener("input", save);
+
+  function updateProgress() {
+    const fields = [...form.querySelectorAll("input[type=text], textarea")];
+    let filled = fields.filter(f => f.value.trim()).length, total = fields.length;
+    const radioGroups = new Set([...form.querySelectorAll("input[type=radio]")].map(r => r.name));
+    radioGroups.forEach(n => { total++; if (form.querySelector(`input[name="${n}"]:checked`)) filled++; });
+    document.getElementById("progressFill").style.width = Math.min(100, Math.round((filled / total) * 100)) + "%";
+  }
+
+  async function sendToSheet() {
+    const status = document.getElementById("sendStatus");
+    const btn = document.getElementById("submitBtn");
+    if (!SHEET_WEBHOOK_URL) { status.textContent = "Submission endpoint isn't configured yet."; return; }
+    const submittedAt = new Date().toISOString();
+    const payload = { columns: buildColumns(submittedAt), submittedAt };
+    btn.disabled = true; status.textContent = "Sending…";
+    try {
+      await fetch(SHEET_WEBHOOK_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+      status.textContent = "Submitted ✓ Thank you — we've received your answers.";
+      btn.textContent = "Submitted ✓";
+    } catch (e) { btn.disabled = false; status.textContent = "Couldn't reach the server. Please try again."; }
+  }
+
+  document.getElementById("submitBtn").addEventListener("click", sendToSheet);
+  document.getElementById("clearBtn").addEventListener("click", () => { if (!confirm("Clear all answers?")) return; localStorage.removeItem(STORAGE_KEY); location.reload(); });
+
+  load();
+</script>
+</body>
+</html>
